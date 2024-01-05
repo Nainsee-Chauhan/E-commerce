@@ -1,24 +1,22 @@
-// Cart.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./Cart.css"; // Import the CSS file
+import "./Cart.css";
 import SimpleImageSlider from "react-simple-image-slider";
 
 const Cart = ({ product }) => {
-  const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem("cart")) || []);
+  const [cartItems, setCartItems] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
   const images = product?.images || [];
 
   const handleRemoveItem = (itemToRemove) => {
-    // Implement logic to remove item from the cart
     const updatedCart = cartItems.filter((item) => item.id !== itemToRemove.id);
     setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
-    console.log(localStorage.getItem('cart'))
-    // You may also update your Redux state here if you're using Redux
+    console.log(localStorage.getItem("cart"));
   };
 
   return (
-     
     <div className="cart-container">
       <h2>Your Cart </h2>
       {cartItems.length === 0 ? (
@@ -29,13 +27,13 @@ const Cart = ({ product }) => {
             <div key={item.id} className="cart-item">
               <h3>{item.title}</h3>
               <div className="img">
-              <SimpleImageSlider
-                width={220}
-                height={220}
-                images={item.images?.map((img) => ({ url:img }))}
-                showBullets={true}
-                showNavs={true}
-              />
+                <SimpleImageSlider
+                  width={220}
+                  height={220}
+                  images={item.images?.map((img) => ({ url: img }))}
+                  showBullets={true}
+                  showNavs={true}
+                />
               </div>
               <p>{item.description}</p>
               <p>Price: ${item.price}</p>
@@ -46,7 +44,9 @@ const Cart = ({ product }) => {
         </div>
       )}
       <div className="back_btn">
-      <Link to="/home"><button>Back</button></Link>
+        <Link to="/home">
+          <button>Back</button>
+        </Link>
       </div>
     </div>
   );

@@ -1,32 +1,23 @@
-
-// ProductPage.js
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import "./Product.css"; // Import the CSS file
+import "./Product.css";
 import SimpleImageSlider from "react-simple-image-slider";
 
-const ProductPage = () => { 
-
+const ProductPage = () => {
   window.scroll({
-    top: 0, 
-    left: 0, 
-    behavior: 'smooth'
+    top: 0,
+    left: 0,
+    behavior: "smooth",
   });
   const location = useLocation();
   const [product, setProduct] = useState(location.state?.product || null);
 
-  // useEffect(() => {
-  //   setProduct(location.state?.product || null);
-  // }, [location.state]);
-
   useEffect(() => {
-    // Try to get product details from location state
     const { product } = location.state || {};
 
     if (product) {
       setProduct(product);
     } else {
-      // If not available, try to get product details from localStorage
       const storedProduct = JSON.parse(localStorage.getItem("storedItem"));
 
       if (storedProduct) {
@@ -39,7 +30,17 @@ const ProductPage = () => {
     return <div>No product details available</div>;
   }
 
-  const { title, description, price, discountPercentage, rating, stock, brand, category, images } = product;
+  const {
+    title,
+    description,
+    price,
+    discountPercentage,
+    rating,
+    stock,
+    brand,
+    category,
+    images,
+  } = product;
 
   return (
     <div className="product-page">
@@ -60,7 +61,6 @@ const ProductPage = () => {
       <p className="stock">Stock: {stock}</p>
       <p>Brand: {brand}</p>
       <p>Category: {category}</p>
-      {/* Add more details as needed */}
     </div>
   );
 };
