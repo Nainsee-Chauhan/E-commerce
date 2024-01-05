@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import "./login.css";
 
 const Login = ({ onAuthentication }) => {
-  // State for username and password
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -30,6 +29,7 @@ const Login = ({ onAuthentication }) => {
       return;
     }
     try {
+      localStorage.setItem("loggedinUser", {"username": username, "password":password })
       // Dummy API endpoint for authentication (replace with your actual endpoint)
       const apiUrl = "https://dummyjson.com/auth/login";
       const response = await fetch(apiUrl, {
@@ -37,8 +37,16 @@ const Login = ({ onAuthentication }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ "username": username, "password":password }),
       });
+      const response1 = await fetch("https://dummyjson.com/auth/RESOURCE", {
+        method: "GET" /* or POST/PUT/PATCH/DELETE */,
+        headers: {
+          Authorization: `Bearer ${response.token}`,
+          "Content-Type": "application/json",
+        },
+      }).then((res) => res.json());
+      console.log(response1);
 
       // Assuming the API returns a JSON object with a 'status' and 'token' property
       const data = await response.json();
@@ -46,7 +54,7 @@ const Login = ({ onAuthentication }) => {
       if (data) {
         navigate("/home");
         setAuthToken(data.token);
-        console.log(data.token);
+        // console.log(data.token);
         // Store the token in local storage
         localStorage.setItem("authToken", data.token);
 
@@ -72,17 +80,8 @@ const Login = ({ onAuthentication }) => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   // You can perform additional actions after successful login here
-  //   if (loginStatus === 'success' && authToken) {
-  //     // Redirect or perform other actions
-  //     console.log('Login successful! Token:', authToken);
-  //   }
-  // }, [loginStatus, authToken]);
-
   return (
     <>
-    <div className="c">
       <div className="c1">
         <h1>Login</h1>
         <div>
@@ -98,13 +97,10 @@ const Login = ({ onAuthentication }) => {
           />
         </div>
         <div className="c2">
-          <button className="login-button" onClick={handleLogin}>
-            Login
-          </button>
+          <button onClick={handleLogin }>Login</button>
         </div>
         {loginStatus && <p>Login Status: {loginStatus}</p>}
       </div>
-    </div>
     </>
   );
 };

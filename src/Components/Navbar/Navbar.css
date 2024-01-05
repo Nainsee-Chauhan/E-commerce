@@ -4,6 +4,10 @@
     padding: 5px;
     background-color: rgb(240, 238, 235);
     box-shadow:0 0px 8px  rgb(12, 12, 12);
+    position: fixed;
+    width: 100vw;
+    z-index: 1000;
+    align-items: center;
     
 }
 .nav-logo{
@@ -46,7 +50,6 @@
 }
 .searchbar{
     justify-content:center;
-    padding-top: 20px;
     padding-left: 65px;
     
 }
@@ -58,6 +61,16 @@
     width: 100%;
     border-radius: 10px;
     height: 2.5rem;
+    padding: 0 16px;
+    box-shadow: 0px 0px 8px #ddd;
+    display: flex;
+    align-items: center;
+}
+.filter-wrapper{
+    background-color: white;
+    /* width: 100%; */
+    border-radius: 10px;
+    height: 2.3rem;
     padding: 0 16px;
     box-shadow: 0px 0px 8px #ddd;
     display: flex;
@@ -129,4 +142,11 @@ input:focus{
   .dropdown:hover .dropdown-content {
     display: block;
   }
-  
+  button{
+    height: 28px;
+    width: 65px;
+    border: none;
+    border-radius: 8px;
+    background-color:rgb(235, 4, 4) ;
+    color: white;
+  }

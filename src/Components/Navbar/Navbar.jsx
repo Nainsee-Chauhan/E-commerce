@@ -1,41 +1,44 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import cart_icn from "../Assets/cart_icn.png";
 import logo1 from "../Assets/logo1.png";
 import { SearchResults } from "./SearchResults";
-
 import { FaSearch } from "react-icons/fa";
 
-const Navbar = () => {
+const Navbar = ({ cartLength }) => {
   const [results, setResults] = useState([]);
   const [input, setInput] = useState("");
+  const navigate = useNavigate();
 
-  ///searchbar
   const fetchData = (value) => {
     fetch(`https://dummyjson.com/products/search?q=${value}`)
       .then((response) => response.json())
       .then(async (json) => {
-        // console.log(json.products)
         const results = await json.products.filter((product) => {
           return (
             product &&
-            product.name &&
-            product.name.toLowerCase().includes(value)
+            product.title &&
+            product.title.toLowerCase().includes(value)
           );
         });
         setResults(results);
-        
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        setResults([]); // Set results to an empty array in case of an error
+        setResults([]);
       });
   };
 
   const handleChange = (value) => {
     setInput(value);
-    fetchData(value);
+    fetchData(value.toLowerCase());
+  };
+
+  // search result
+  const handleResultClick = (result) => {
+    console.log(result);
+    navigate(`/product/${result.id}`);
   };
 
   return (
@@ -46,10 +49,12 @@ const Navbar = () => {
           <p>SHOPPER</p>
         </div>
         <div className="searchbar">
-          {/* <SearchResults results={results} /> */}
-          {results.length > 0 && <SearchResults results={results} />}
-
-          {/* searchbar */}
+          {input !== "" && results.length > 0 && (
+            <SearchResults
+              results={results}
+              onResultClick={handleResultClick}
+            />
+          )}
 
           <div className="input-wrapper">
             <FaSearch id="search-icon" />
@@ -67,8 +72,17 @@ const Navbar = () => {
           <Link to="/cart">
             <img src={cart_icn} alt="" />
           </Link>
-          <div className="nav-cart-counter">0</div>
+          <div className="nav-cart-counter">{cartLength.length}</div>
         </div>
+
+        <button
+          onClick={() => {
+            localStorage.removeItem("loggedinUser");
+            navigate("/");
+          }}
+        >
+          Sign Out
+        </button>
       </div>
     </>
   );

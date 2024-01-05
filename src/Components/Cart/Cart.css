@@ -1,0 +1,97 @@
+/* Cart.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #cceeeb;
+  }
+  
+  .cart-container {
+    text-align: center;
+    max-width: 30rem;
+    padding: 20px;
+    margin-left: 24rem;
+  }
+  
+  .cart-container h2 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #333;
+    padding-bottom: 10px;
+   margin-left: 2rem;
+    font-size: 50px;
+    
+  }
+
+  h5{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 50px;
+    color: #676767;
+    text-align: center;
+    margin-left: 1rem;
+    margin-bottom: 4rem;
+    margin-top: 10rem;
+    
+  }
+  
+  .cart-item {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 6px 10px rgb(79, 79, 79);
+    background: linear-gradient(140deg, #72d9d0, #e1ffea22 60%);
+    max-width: 50rem;
+    margin: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 30px;
+    padding: 20px;
+    
+  }
+  
+  .cart-item h3 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #333;
+    padding-bottom: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 20px;
+  }
+  .cart-item p {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    padding-left: 1.5rem;
+  }
+  .cart-item button{
+      height: 5vh;
+      width: 90px;
+      border: none;
+      align-items: center;
+      border-radius: 8px;
+      padding-top: 4px;
+      background-color: #64bcb4;
+      cursor: pointer;
+      transition: background-color 0.4s;
+  }
+  .back_btn{
+    margin-right: 0rem;
+    padding-top: 20px;
+  }
+  .back_btn button{
+
+    height: 5vh;
+    width: 90px;
+    border: none;
+    align-items: center;
+    border-radius: 8px;
+    padding-top: 4px;
+    background-color: #64bcb4;
+    cursor: pointer;
+    transition: background-color 0.4s;
+  }
+
+  .back_btn button:hover {
+    background-color: #65b7ab; /* Darker color on hover */
+  }
+  .back_btn button:active {
+    background-color: #57ded5; 
+  }
+  .img{
+    padding-left: 5rem;
+  }

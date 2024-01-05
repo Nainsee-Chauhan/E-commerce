@@ -1,12 +1,26 @@
-.results-list{
-    position: relative;
-    width: auto;
+.results-list {
+    position: absolute;
+    width: 23vw ;/* Adjust the width based on your design */
     background-color: white;
     display: flex;
     flex-direction: column;
     box-shadow: 0px 0px 8px #ddd;
-    border-radius: 10px;
-    margin: 1rem;
+    border-radius:5px;
+    margin: 0.1rem;
     max-height: 200px;
     overflow-y: scroll;
-}
+    top: calc(100% + 10px); /* Adjust the top position based on your design */
+    z-index: 1000; /* Ensure the results box is on top of other elements */
+  }
+  
+  /* Style for individual result items */
+  .results-list > div {
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .results-list > div:hover {
+    background-color: #ffffff;
+  }
+  
